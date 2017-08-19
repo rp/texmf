@@ -1,0 +1,11 @@
+*.pdf
+*.aux
+*.bbl
+*.log
+*.dvi
+*.ps
+*.blg
+*.bcf
+*.out
+*-blx.bib
+*.run.xml

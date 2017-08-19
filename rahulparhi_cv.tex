@@ -1,0 +1,38 @@
+\documentclass{rahul-cv}
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[sorting=ydnt,backend=bibtex,style=alphabetic]{biblatex}
+
+\def\labelitemi{$\triangleright$}
+
+\definecolor{linkcolor}{rgb}{0.0,0.0,0.3}
+\hypersetup{colorlinks,breaklinks,urlcolor=linkcolor,linkcolor=linkcolor}
+
+\makeatletter
+\def\input@path{{sections/}}
+\makeatother
+
+\input{links}
+\input{bibsetup}
+
+\addbibresource{bibs/pubs.bib}
+
+\begin{document}
+
+\nocite{*}
+\name{Rahul Parhi}
+
+\info{
+  \texttt{\href{tel:16124446067}{(612)\,$\cdot$\,444\,$\cdot$\,6067}},
+  \texttt{\href{mailto:parhi003@umn.edu}{parhi003@umn.edu}},
+  \texttt{\href{http://rahul.sh}{http://rahul.sh}}
+}
+
+\input{education}
+\input{skills}
+\input{experience}
+\input{publications}
+\input{awards}
+
+\end{document}
