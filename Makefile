@@ -1,4 +1,4 @@
-TEX=rahulparhi_cv.tex
+TEX=rahulparhi_resume.tex
 BIB=$(basename $(TEX))
 
 all:
