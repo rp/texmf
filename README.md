@@ -11,7 +11,7 @@ its syntax. If you are a real person, the only relevant file in this repository
 is [`rahul-cv.cls`](/rahul-cv.cls).  Everything else is just my personal CV.
 
 The output PDF can be seen on my site
-[here](http://rahul.sh/files/rahulparhi_cv.pdf).
+[here](http://files.rahul.sh/rahulparhi_resume.pdf).
 
 You should probably only use this if you are me since I won't bother documenting
 it.
