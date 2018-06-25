@@ -1,0 +1,225 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{rahul}[2017/03/23 new commands and stuff]
+
+\RequirePackage{amsmath,amssymb,amsfonts,accents}
+\RequirePackage{bbm}
+\RequirePackage{mathtools}
+\RequirePackage{microtype}
+\RequirePackage{tikz}
+
+% memes {{{
+
+\newcommand{\shrug}[1][]{%
+  \begin{tikzpicture}[baseline,x=0.8\ht\strutbox,y=0.8\ht\strutbox,line width=0.125ex,#1]
+    \def\arm{(-2.5,0.95) to (-2,0.95) (-1.9,1) to (-1.5,0) (-1.35,0) to (-0.8,0)};
+    \draw \arm;
+    \draw[xscale=-1] \arm;
+    \def\headpart{(0.6,0) arc[start angle=-40, end angle=40,x radius=0.6,y radius=0.8]};
+    \draw \headpart;
+    \draw[xscale=-1] \headpart;
+    \def\eye{(-0.075,0.15) .. controls (0.02,0) .. (0.075,-0.15)};
+    \draw[shift={(-0.3,0.8)}] \eye;
+    \draw[shift={(0,0.85)}] \eye;
+    % draw mouth
+    \draw (-0.1,0.2) to [out=15,in=-100] (0.4,0.95);
+  \end{tikzpicture}
+}
+
+\newcommand{\batmanhelper}[1]{%
+  \begin{tikzpicture}[baseline=0em, scale=#1]
+    \draw[fill,black] (-0.25,1.48) .. controls (-0.1,1.5) and (0.1,1.5) ..
+    (0.25,1.48) -- (0.35,1.92) .. controls (0.425,1.8) and (0.41,1.3) ..
+    (0.45,1.2) .. controls (0.6,1.05) and (1.96,1.05) .. (1.98,2.08) --
+    (5.93,2.08) .. controls (4.2,1.45) and (4,0.3) .. (4.2,-0.28) .. controls
+    (2.4,-0.09) and (0.4,-0.5) .. (0,-2.052) .. controls (-0.4,-0.5) and
+    (-2.4,-0.09) .. (-4.2,-0.28) .. controls (-4,0.3) and (-4.2,1.45) ..
+    (-5.93,2.08) -- (-1.98,2.08) .. controls (-1.96,1.05) and (-0.6,1.05) ..
+    (-0.45,1.2) .. controls (-0.41,1.3) and (-0.425,1.8) .. (-0.35,1.92) --
+    (-0.25,1.48);
+  \end{tikzpicture}
+}
+
+\newcommand{\batman}{\batmanhelper{0.05}}
+
+% }}}
+
+% Fix Math {{{
+\newcommand{\var}[1]{\mathit{#1}}
+\newcommand{\func}[1]{\mathit{#1}}
+
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+
+\DeclareRobustCommand\bfseries{%
+  \not@math@alphabet\bfseries\mathbf
+  \fontseries\bfdefault\selectfont
+  \boldmath % <-- added
+}
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\diam}{diam}
+% variation of a function, not variable nor variance
+\DeclareMathOperator{\V}{Var}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\rank}{rank}
+
+% fix spacing with \left and \right
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\curly{\{}{\}}
+\DeclarePairedDelimiter\paren{(}{)}
+\DeclarePairedDelimiter\sq{[}{]}
+\DeclarePairedDelimiter\ang{\langle}{\rangle}
+
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+
+\let\oldceil\ceil
+\def\ceil{\@ifstar{\oldceil}{\oldceil*}}
+
+\let\oldfloor\floor
+\def\floor{\@ifstar{\oldfloor}{\oldfloor*}}
+
+\let\oldcurly\curly
+\def\curly{\@ifstar{\oldcurly}{\oldcurly*}}
+
+\let\oldparen\paren
+\def\paren{\@ifstar{\oldparen}{\oldparen*}}
+
+\let\oldsq\sq
+\def\sq{\@ifstar{\oldsq}{\oldsq*}}
+
+\let\oldang\ang
+\def\ang{\@ifstar{\oldang}{\oldang*}}
+
+\newcommand{\bigO}[1]{\mathcal{O}\paren{#1}}
+\newcommand{\littleO}[1]{o\paren{#1}}
+\newcommand{\smallO}[1]{\littleO{#1}}
+
+\def\mathcolor#1#{\@mathcolor{#1}}
+\def\@mathcolor#1#2#3{%
+  \protect\leavevmode
+  \begingroup
+    \color#1{#2}#3%
+  \endgroup
+}
+
+\newcommand{\pd}[2][]{\dfrac{\partial#1}{\partial#2}}
+\newcommand{\dd}[1]{\,\textrm d{#1}}
+\newcommand{\de}[2][]{\dfrac{\mathrm d{#1}}{\mathrm d{#2}}}
+
+% hats shouldn't take up height
+\let\oldhat\hat
+\renewcommand{\hat}[1]{\vphantom{#1}\smash[t]{\oldhat{#1}}}
+
+\newcommand\evalBracket[1]{{\left[#1\vphantom{\big|}\right|}}
+\newcommand\evalNoBracket[1]{{\left.\kern-\nulldelimiterspace#1\vphantom{\Big|}\right|}}
+\def\eval{\@ifstar\evalBracket\evalNoBracket}
+
+\newsavebox\myboxA
+\newsavebox\myboxB
+\newlength\mylenA
+
+\newcommand*\xoverline[2][0.75]{%
+    \sbox{\myboxA}{$\m@th#2$}%
+    \setbox\myboxB\null% Phantom box
+    \ht\myboxB=\ht\myboxA%
+    \dp\myboxB=\dp\myboxA%
+    \wd\myboxB=#1\wd\myboxA% Scale phantom
+    \sbox\myboxB{$\m@th\overline{\copy\myboxB}$}%  Overlined phantom
+    \setlength\mylenA{\the\wd\myboxA}%   calc width diff
+    \addtolength\mylenA{-\the\wd\myboxB}%
+    \ifdim\wd\myboxB<\wd\myboxA%
+       \rlap{\hskip 0.5\mylenA\usebox\myboxB}{\usebox\myboxA}%
+    \else
+        \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
+    \fi}
+
+\newcommand{\cl}[1]{\xoverline{#1}}
+\newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
+
+% }}}
+
+% Probability & Related {{{
+
+\newcommand\given[1][]{\:\ifnum\currentgrouptype=16\middle\fi|\:}
+
+\newcommand\indep{\protect\mathpalette{\protect\indephelper}{\perp}}
+\def\indephelper#1#2{\mathrel{\rlap{$#1#2$}\mkern4mu{#1#2}}}
+
+\newcommand{\E}[2][]{\mathbb{E}_{#1}\left[#2\right]}
+
+% h4x
+\newcommand{\bbPr}[2][]{\mathbb{P}_{#1}\left(#2\right)}
+\newcommand{\bfPr}[2][]{\mathbf{P}_{#1}\left(#2\right)}
+\def\Pr{\@ifstar\bfPr\bbPr}
+
+\newcommand{\Var}[2][]{\textsf{Var}_{#1}\left(#2\right)}
+\newcommand{\Cov}[2][]{\textsf{Cov}_{#1}\left(#2\right)}
+\renewcommand{\H}[1]{H\left(#1\right)}
+\newcommand{\HB}[1]{\mathcal{H}_B\left(#1\right)}
+\DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
+  #1\;\delimsize\|\;#2%
+}
+\newcommand{\KL}{D_\textsf{KL}\infdivx}
+
+\let\oldKL\KL
+\def\KL{\@ifstar{\oldKL}{\oldKL*}}
+
+\newcommand{\I}[1]{\mathbbm{1}_{#1}}
+\newcommand{\1}{\I}
+
+\DeclareMathOperator{\IID}{IID}
+\DeclareMathOperator{\iid}{\IID}
+\DeclareMathOperator{\Ber}{Ber}
+\DeclareMathOperator{\Bin}{Bin}
+\DeclareMathOperator{\Geo}{Geo}
+\DeclareMathOperator{\N}{\mathcal{N}}
+\DeclareMathOperator{\U}{\mathcal{U}}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Pareto}{Pareto}
+\DeclareMathOperator{\Laplace}{Laplace}
+
+% }}}
+
+% Algorithms {{{
+
+\newcommand{\alg}[1]{\textsc{#1}}
+
+%\algnewcommand\True{\textbf{true}\space}
+%\algnewcommand\False{\textbf{false}\space}
+%
+%\algnewcommand{\LineComment}[1]{\State \(\triangleright\) #1}
+%
+%\newcommand{\algmargin}{\the\ALG@thistlm}
+%\newlength{\whilewidth}
+%\settowidth{\whilewidth}{\algorithmicwhile\ }
+%\algdef{SE}[parWHILE]{parWhile}{EndparWhile}[1]
+%  {\parbox[t]{\dimexpr\linewidth-\algmargin}{%
+%     \hangindent\whilewidth\strut\algorithmicwhile\ #1\ \algorithmicdo\strut}}{\algorithmicend\ \algorithmicwhile}%
+%\algnewcommand{\parState}[1]{\State%
+%  \parbox[t]{\dimexpr\linewidth-\algmargin}{\strut #1\strut}}
+%
+% }}}
+
+% Misc {{{
+
+\newcommand{\skipitems}[1]{%
+  \addtocounter{\@enumctr}{#1}%
+}
+
+% }}}
