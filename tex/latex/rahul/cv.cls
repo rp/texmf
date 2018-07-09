@@ -10,6 +10,9 @@
 \RequirePackage{multicol}
 \RequirePackage{etoolbox}
 \RequirePackage{enumitem}
+\RequirePackage[cmyk]{xcolor}
+
+\renewcommand{\familydefault}{\sfdefault}
 
 \setlength\parindent{0pt} % no indent by default
 \newcommand{\name}[1]{\centerline{\bfseries\huge{\MakeUppercase{#1}}}\nameskip}
@@ -40,19 +43,19 @@
   {#1\textnormal{\dotfill}}
 
 \titleformat{\section}
-  {\normalsize\bfseries\raggedright}
+  {\color{blue}\normalsize\bfseries\raggedright}
   {}
   {0pt}
   {\uppercase}
   [\sectionskip\titlerule]
 
 \titleformat{\subsection}
-  {\normalsize\scshape\raggedright}
+  {\color{blue}\normalsize\raggedright}
   {}
   {0.5em}
   {\dotafter}
 
-\titlespacing*{\section}{0pt}{0ex plus 0.5ex minus 0.5ex}{1ex plus 0.5ex minus 0ex}
+\titlespacing*{\section}{0pt}{2ex plus 0.5ex minus 0.5ex}{1ex plus 0.5ex minus 0ex}
 \titlespacing*{\subsection}{0pt}{-0.5ex plus 0.5ex minus 0.5ex}{0.5ex plus 0.5ex minus 0ex}
 
 \newcommand*{\length}[1]{%
@@ -71,15 +74,15 @@
   \def\arraystretch{1.1}
   \begin{tabularx}{\width}{@{}Xr@{}}
     \mc{1}{l}{\bfseries #1} & #2 \\
-    \mc{1}{l}{#3} & \textit{#4} \\
+    \mc{1}{l}{#3} & \textsl{#4} \\
     \def\nextitem{\def\nextitem{}}%
     \ifstrempty{#5}
       {\\ [-2.2\normalbaselineskip]}
       {\@for \el:={#5}\do{\nextitem{\el \newline}}}
-    \phantom{} \\ [-0.8\normalbaselineskip]
+    \phantom{} \\[-0.8\normalbaselineskip]
     \ifstrempty{#6}
       {}
-      {\mcX{2}{\descriptionsize\parbox{\hsize}{#6}}}
+      {\mcX{2}{\descriptionsize\rmfamily\parbox{\hsize}{#6}}}
   \end{tabularx}
   \egroup
   \vspace{1ex}
