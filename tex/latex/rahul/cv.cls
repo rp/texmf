@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{rahul-cv}[2017/08/17 Rahul Parhi's CV/Resume class]
+\ProvidesClass{cv}[2018/07/13 Rahul Parhi's CV/Resume class]
 \LoadClass[10pt,letterpaper]{article}
 
 \RequirePackage[utf8]{inputenc}
