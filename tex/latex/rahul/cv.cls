@@ -55,8 +55,8 @@
   {0.5em}
   {\dotafter}
 
-\titlespacing*{\section}{0pt}{2ex plus 0.5ex minus 0.5ex}{1ex plus 0.5ex minus 0ex}
-\titlespacing*{\subsection}{0pt}{-0.5ex plus 0.5ex minus 0.5ex}{0.5ex plus 0.5ex minus 0ex}
+\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.5ex}{1ex plus 0.5ex minus 0ex}
+\titlespacing*{\subsection}{0pt}{0ex plus 0.5ex minus 0.5ex}{0.5ex plus 0.5ex minus 0ex}
 
 \newcommand*{\length}[1]{%
   \@tempcnta\z@
@@ -85,7 +85,7 @@
       {\mcX{2}{\descriptionsize\rmfamily\parbox{\hsize}{#6}}}
   \end{tabularx}
   \egroup
-  \vspace{1ex}
+  \vspace{1ex plus 1ex minus 1ex}
 }
 
 \def\nameskip{\smallskip}
