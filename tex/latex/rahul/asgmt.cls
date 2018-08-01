@@ -8,6 +8,7 @@
 \RequirePackage{fancyhdr}
 \RequirePackage[headheight=110pt,margin=1in]{geometry}
 \RequirePackage{lastpage}
+\RequirePackage[framemethod=TikZ]{mdframed}
 \RequirePackage[sf,bf]{titlesec}
 \RequirePackage{titling}
 
@@ -23,9 +24,9 @@
 \def\name#1{\def\@name{#1}}
 \def\@name{??}
 
-\def\idnostar#1{\def\@id{\texttt{#1}}}
-\def\idstar#1{\def\@id{ID: \texttt{#1}}}
-\def\id{\@ifstar\idstar\idnostar}
+\def\identnostar#1{\def\@id{\texttt{#1}}}
+\def\identstar#1{\def\@id{ID: \texttt{#1}}}
+\def\ident{\@ifstar\identstar\identnostar}
 \def\@id{??}
 
 \allowdisplaybreaks[1]
@@ -80,10 +81,26 @@
   \section{\currentproblem}
   \problementer
 }{
-  \problemexit{\problemoverride}
+  \problemexit
 }
 
 \setlength{\droptitle}{-60pt}
+
+\newenvironment{question}{
+  \mdfsetup{
+    frametitle={
+      \tikz[baseline=(current bounding box.east),outer sep=0pt]
+      \node[anchor=east,rectangle,fill=black!20] {\strut Question};
+    },
+    %innertopmargin=10pt,
+    linecolor=black!40,
+    linewidth=1pt,
+    topline=true,
+    frametitleaboveskip=\dimexpr-\ht\strutbox\relax,
+  }
+  \begin{mdframed}
+}
+{\end{mdframed}}
 
 \title{
   \textbf{\sffamily\@class:\ \@assignment} \\ [12pt]
