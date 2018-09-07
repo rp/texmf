@@ -55,8 +55,8 @@
   {0.5em}
   {\dotafter}
 
-\titlespacing*{\section}{0pt}{1ex plus 0.5ex minus 0.5ex}{1ex plus 0.5ex minus 0ex}
-\titlespacing*{\subsection}{0pt}{0ex plus 0.5ex minus 0.5ex}{0.5ex plus 0.5ex minus 0ex}
+\titlespacing*{\section}{0pt}{3ex plus 2ex minus 0.5ex}{2ex plus 0.5ex minus 0ex}
+\titlespacing*{\subsection}{0pt}{2ex plus 1ex minus 0.5ex}{1ex plus 0.5ex minus 0ex}
 
 \newcommand*{\length}[1]{%
   \@tempcnta\z@
