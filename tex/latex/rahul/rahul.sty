@@ -124,7 +124,7 @@
 
 % hats shouldn't take up height
 \let\oldhat\hat
-\renewcommand{\hat}[1]{\vphantom{#1}\smash[t]{\oldhat{#1}}}
+\renewcommand{\hat}[1]{\vphantom{#1}\smash[t]{\widehat{#1}}}
 
 \newcommand\evalBracket[1]{{\left[#1\vphantom{\big|}\right|}}
 \newcommand\evalNoBracket[1]{{\left.\kern-\nulldelimiterspace#1\vphantom{\Big|}\right|}}
@@ -149,7 +149,8 @@
         \hskip -0.5\mylenA\rlap{\usebox\myboxA}{\hskip 0.5\mylenA\usebox\myboxB}%
     \fi}
 
-\newcommand{\cl}[1]{\xoverline{#1}}
+% FIXME: using \text here is a hack
+\newcommand{\cl}[1]{\text{\xoverline{#1}}}
 \newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
 
 % }}}
