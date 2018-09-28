@@ -4,12 +4,12 @@
 \LoadClass[11pt,letterpaper]{article}
 
 \RequirePackage{amsmath}
+\RequirePackage{enumitem}
 \RequirePackage{extramarks}
 \RequirePackage{fancyhdr}
 \RequirePackage[headheight=110pt,margin=1in]{geometry}
 \RequirePackage{lastpage}
-\RequirePackage[framemethod=TikZ]{mdframed}
-\RequirePackage[sf,bf]{titlesec}
+\RequirePackage[sf,bf,compact]{titlesec}
 \RequirePackage{titling}
 
 \def\assignment#1{\def\@assignment{#1}}
@@ -18,18 +18,27 @@
 \def\class#1{\def\@class{#1}}
 \def\@class{??}
 
+\newif\ifnodue
+\noduefalse
+
 \def\due#1{\def\@due{#1}}
 \def\@due{??}
 
 \def\name#1{\def\@name{#1}}
 \def\@name{??}
 
-\def\identnostar#1{\def\@id{\texttt{#1}}}
-\def\identstar#1{\def\@id{ID: \texttt{#1}}}
-\def\ident{\@ifstar\identstar\identnostar}
-\def\@id{??}
+\DeclareOption{nodue}{
+  \noduetrue
+}
 
-\allowdisplaybreaks[1]
+\ProcessOptions
+
+\def\identnostar#1{\def\@ident{\texttt{#1}}}
+\def\identstar#1{\def\@ident{ID: \texttt{#1}}}
+\def\ident{\@ifstar\identstar\identnostar}
+\def\@ident{??}
+
+\allowdisplaybreaks
 
 \pagestyle{fancy}
 
@@ -86,27 +95,15 @@
 
 \setlength{\droptitle}{-60pt}
 
-\newenvironment{question}{
-  \mdfsetup{
-    frametitle={
-      \tikz[baseline=(current bounding box.east),outer sep=0pt]
-      \node[anchor=east,rectangle,fill=black!20] {\strut Question};
-    },
-    %innertopmargin=10pt,
-    linecolor=black!40,
-    linewidth=1pt,
-    topline=true,
-    frametitleaboveskip=\dimexpr-\ht\strutbox\relax,
-  }
-  \begin{mdframed}
-}
-{\end{mdframed}}
+\linespread{1.1}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
 
 \title{
   \textbf{\sffamily\@class:\ \@assignment} \\ [12pt]
-  \small{Due\ on\ \@due} \\ [9pt]
+  \small \ifnodue \vspace{-3pt} \else Due\ on\ \@due \\ [9pt] \fi
   \textbf{\sffamily\@name} \\ [3pt]
-  \textbf{\sffamily\@id} \\
+  \textbf{\sffamily\@ident} \\
 }
 \preauthor{}
 \postauthor{}
