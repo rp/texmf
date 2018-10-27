@@ -6,6 +6,7 @@
 \RequirePackage{mathtools}
 \RequirePackage{microtype}
 \RequirePackage{tikz}
+\RequirePackage{bm}
 
 % memes {{{
 
@@ -44,6 +45,11 @@
 % }}}
 
 % Fix Math {{{
+\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+\newcommand\st[1][]{\:\ifnum\currentgrouptype=16\middle\fi|\:}
+
 \newcommand{\var}[1]{\mathit{#1}}
 \newcommand{\func}[1]{\mathit{#1}}
 
@@ -153,6 +159,9 @@
 \newcommand{\cl}[1]{\text{\xoverline{#1}}}
 \newcommand{\interior}[1]{\accentset{\smash{\raisebox{-0.12ex}{$\scriptstyle\circ$}}}{#1}\rule{0pt}{2.3ex}}
 
+\renewcommand\complement{{\mathsf{C}}}
+\newcommand{\CH}[1]{\mathcal{CH}{\paren{#1}}}
+
 % }}}
 
 % Probability & Related {{{
@@ -162,21 +171,33 @@
 \newcommand\indep{\protect\mathpalette{\protect\indephelper}{\perp}}
 \def\indephelper#1#2{\mathrel{\rlap{$#1#2$}\mkern4mu{#1#2}}}
 
-\newcommand{\E}[2][]{\mathbb{E}_{#1}\left[#2\right]}
-
 % h4x
-\newcommand{\bbPr}[2][]{\mathbb{P}_{#1}\left(#2\right)}
-\newcommand{\bfPr}[2][]{\mathbf{P}_{#1}\left(#2\right)}
+
+\DeclareMathOperator*{\bbPrOp}{\mathbb{P}}
+\DeclareMathOperator*{\bfPrOp}{\mathbf{P}}
+\newcommand{\bbPr}[2][]{\bbPrOp_{#1}\left(#2\right)}
+\newcommand{\bfPr}[2][]{\bfPrOp_{#1}\left(#2\right)}
 \def\Pr{\@ifstar\bfPr\bbPr}
 
-\newcommand{\Var}[2][]{\textsf{Var}_{#1}\left(#2\right)}
-\newcommand{\Cov}[2][]{\textsf{Cov}_{#1}\left(#2\right)}
-\renewcommand{\H}[1]{H\left(#1\right)}
+\DeclareMathOperator*{\EOp}{\mathbb{E}}
+\newcommand{\E}[2][]{\EOp_{#1}\left[#2\right]}
+
+\DeclareMathOperator*{\VarOp}{\mathsf{Var}}
+\DeclareMathOperator*{\CovOp}{\mathsf{Cov}}
+\newcommand{\Var}[2][]{\VarOp_{#1}\left(#2\right)}
+\newcommand{\Cov}[2][]{\CovOp_{#1}\left(#2\right)}
+
+\DeclareMathOperator*{\HOp}{\mathit{H}}
+\renewcommand{\H}[2][]{\HOp_{#1}\left(#2\right)}
 \newcommand{\HB}[1]{\mathcal{H}_B\left(#1\right)}
+
+\DeclareMathOperator*{\hOp}{\mathit{h}}
+\newcommand{\h}[2][]{\hOp_{#1}\left(#2\right)}
+
 \DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
   #1\;\delimsize\|\;#2%
 }
-\newcommand{\KL}{D_\textsf{KL}\infdivx}
+\newcommand{\D}{D\infdivx}
 
 \let\oldKL\KL
 \def\KL{\@ifstar{\oldKL}{\oldKL*}}
