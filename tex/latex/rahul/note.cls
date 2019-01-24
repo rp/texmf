@@ -9,9 +9,15 @@
 \RequirePackage{etoolbox}
 \RequirePackage{fancyhdr}
 \RequirePackage[headheight=110pt,margin=1in]{geometry}
+\RequirePackage[colorlinks]{hyperref}
 \RequirePackage{lastpage}
 \RequirePackage[sf,bf,compact]{titlesec}
 \RequirePackage{titling}
+
+% make description title \bfseries\sffamily
+\setlist[description]{%
+  font={\bfseries\sffamily},
+}
 
 \def\name#1{\def\@name{#1}}
 \def\@name{??}
@@ -22,7 +28,7 @@
 
 \lhead{\textit{\@title}}
 \chead{}
-\rhead{\textit{Page {\thepage} of \pageref{LastPage}}}
+\rhead{\textit{Page {\thepage} of \pageref*{LastPage}}}
 \lfoot{}
 \cfoot{}
 \rfoot{}
@@ -33,7 +39,7 @@
   \rhead{}
   \lfoot{}
   \cfoot{}
-  \rfoot{\textit{Page {\thepage} of \pageref{LastPage}}}
+  \rfoot{\textit{Page {\thepage} of \pageref*{LastPage}}}
 }
 
 \renewcommand{\headrulewidth}{0pt}
