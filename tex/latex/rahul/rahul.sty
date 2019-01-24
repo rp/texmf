@@ -7,6 +7,7 @@
 \RequirePackage{microtype}
 \RequirePackage{tikz}
 \RequirePackage{bm}
+\RequirePackage{dsfont}
 
 % memes {{{
 
@@ -58,10 +59,10 @@
   }
 }
 
-\renewcommand{\vec}[1]{\bm{#1}}
+\renewcommand{\vec}[1]{{\bm{#1}}}
 \newcommand{\mat}[1]{\mathbf{#1}}
 
-\newcommand\st[1][]{\:\ifnum\currentgrouptype=16\middle\fi|\:}
+\newcommand\st[1][]{\:\colon\:}
 
 \newcommand{\var}[1]{\mathit{#1}}
 \newcommand{\func}[1]{\mathit{#1}}
@@ -138,14 +139,17 @@
 }
 
 \newcommand{\pd}[2][]{\dfrac{\partial#1}{\partial#2}}
-\newcommand{\dd}[1]{\,\textrm d{#1}}
+\newcommand{\dd}{\,\mathrm d}
 \newcommand{\de}[2][]{\dfrac{\mathrm d{#1}}{\mathrm d{#2}}}
 
 % hats shouldn't take up height
 \let\oldhat\hat
 \renewcommand{\hat}[1]{\vphantom{#1}\smash[t]{\widehat{#1}}}
 
-\newcommand\evalBracket[1]{{\left[#1\vphantom{\big|}\right|}}
+\let\oldtilde\tilde
+\renewcommand{\tilde}[1]{\vphantom{#1}\smash[t]{\widetilde{#1}}}
+
+\newcommand\evalBracket[1]{{\left[#1\vphantom{\Big|}\right|}}
 \newcommand\evalNoBracket[1]{{\left.\kern-\nulldelimiterspace#1\vphantom{\Big|}\right|}}
 \def\eval{\@ifstar\evalBracket\evalNoBracket}
 
@@ -215,7 +219,7 @@
 \let\oldKL\KL
 \def\KL{\@ifstar{\oldKL}{\oldKL*}}
 
-\newcommand{\I}[1]{\mathbbm{1}_{#1}}
+\newcommand{\I}{\mathds{1}}
 \newcommand{\1}{\I}
 
 \DeclareMathOperator{\IID}{IID}
@@ -224,10 +228,13 @@
 \DeclareMathOperator{\Bin}{Bin}
 \DeclareMathOperator{\Geo}{Geo}
 \DeclareMathOperator{\N}{\mathcal{N}}
+\DeclareMathOperator{\subG}{\mathsf{subG}}
 \DeclareMathOperator{\U}{\mathcal{U}}
 \DeclareMathOperator{\Exp}{Exp}
 \DeclareMathOperator{\Pareto}{Pareto}
 \DeclareMathOperator{\Laplace}{Laplace}
+\DeclareMathOperator{\ChiSquared}{chi^2}
+\newcommand\ChiSquare\ChiSquared
 
 % }}}
 
