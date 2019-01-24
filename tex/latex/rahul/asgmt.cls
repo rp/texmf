@@ -10,7 +10,10 @@
 \RequirePackage[headheight=110pt,margin=1in]{geometry}
 \RequirePackage{lastpage}
 \RequirePackage[sf,bf,compact]{titlesec}
+\RequirePackage{tcolorbox}
 \RequirePackage{titling}
+
+\tcbuselibrary{breakable, skins}
 
 \def\assignment#1{\def\@assignment{#1}}
 \def\@assignment{??}
@@ -93,11 +96,45 @@
   \problemexit
 }
 
+\newenvironment{problem*}[1][]{
+  \def\problemoverride{#1}
+  \ifx\problemoverride\empty
+    \def\currentproblem{Problem \arabic{problemcounter}}
+  \else
+    \def\currentproblem{\problemoverride}
+  \fi
+  \extramarks{\currentproblem}{}
+
+  \newtcolorbox{question}[1][\currentproblem]{
+    skin=enhanced,
+    attach boxed title to top center={yshift=-2.5mm},
+    colback=white,
+    colframe=black,
+    colbacktitle=white,
+    coltitle=black,
+    boxed title style={size=small,
+      colframe=white,
+    },
+    fonttitle=\bfseries\sffamily,
+    sharp corners=all,
+    breakable,
+    title=##1,
+  }
+  \problementer
+}{
+  \problemexit
+}
+
 \setlength{\droptitle}{-60pt}
 
 \linespread{1.1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
+
+% make description title \bfseries\sffamily
+\setlist[description]{%
+  font={\bfseries\sffamily},
+}
 
 \title{
   \textbf{\sffamily\@class:\ \@assignment} \\ [12pt]
