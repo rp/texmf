@@ -46,6 +46,9 @@
 % }}}
 
 % Fix Math {{{
+
+\newcommand{\ds}{\displaystyle}
+
 \newcommand{\subalign}[1]{%
   \vcenter{%
     \Let@ \restore@math@cr \default@tag
@@ -72,7 +75,7 @@
 \DeclareRobustCommand\bfseries{%
   \not@math@alphabet\bfseries\mathbf
   \fontseries\bfdefault\selectfont
-  \boldmath % <-- added
+  %\boldmath % <-- added
 }
 
 \DeclareMathOperator{\lcm}{lcm}
@@ -86,6 +89,8 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Hom}{Hom}
 \DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
 
 % fix spacing with \left and \right
 \let\originalleft\left
@@ -144,10 +149,10 @@
 
 % hats shouldn't take up height
 \let\oldhat\hat
-\renewcommand{\hat}[1]{\vphantom{#1}\smash[t]{\widehat{#1}}}
+\renewcommand{\hat}[1]{{\vphantom{#1}\smash[t]{\widehat{#1}}}}
 
 \let\oldtilde\tilde
-\renewcommand{\tilde}[1]{\vphantom{#1}\smash[t]{\widetilde{#1}}}
+\renewcommand{\tilde}[1]{{\vphantom{#1}\smash[t]{\widetilde{#1}}}}
 
 \newcommand\evalBracket[1]{{\left[#1\vphantom{\Big|}\right|}}
 \newcommand\evalNoBracket[1]{{\left.\kern-\nulldelimiterspace#1\vphantom{\Big|}\right|}}
@@ -190,14 +195,15 @@
 
 % h4x
 
-\DeclareMathOperator*{\bbPrOp}{\mathbb{P}}
-\DeclareMathOperator*{\bfPrOp}{\mathbf{P}}
-\newcommand{\bbPr}[2][]{\bbPrOp_{#1}\left(#2\right)}
-\newcommand{\bfPr}[2][]{\bfPrOp_{#1}\left(#2\right)}
-\def\Pr{\@ifstar\bfPr\bbPr}
+\DeclareMathOperator*{\PrOp}{\mathbb{P}}
+\newcommand{\PrStar}[2][]{\mathbb{P}_{#1}\left(#2\right)}
+\newcommand{\PrNoStar}[2][]{\PrOp_{#1}\left(#2\right)}
+\def\Pr{\@ifstar\PrStar\PrNoStar}
 
 \DeclareMathOperator*{\EOp}{\mathbb{E}}
-\newcommand{\E}[2][]{\EOp_{#1}\left[#2\right]}
+\newcommand{\EStar}[2][]{\mathbb{E}_{#1}\left[#2\right]}
+\newcommand{\ENoStar}[2][]{\EOp_{#1}\left[#2\right]}
+\def\E{\@ifstar\EStar\ENoStar}
 
 \DeclareMathOperator*{\VarOp}{\mathsf{Var}}
 \DeclareMathOperator*{\CovOp}{\mathsf{Cov}}
@@ -231,10 +237,21 @@
 \DeclareMathOperator{\subG}{\mathsf{subG}}
 \DeclareMathOperator{\U}{\mathcal{U}}
 \DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\Gam}{Gamma}
 \DeclareMathOperator{\Pareto}{Pareto}
 \DeclareMathOperator{\Laplace}{Laplace}
 \DeclareMathOperator{\ChiSquared}{chi^2}
 \newcommand\ChiSquare\ChiSquared
+
+\def\lrt#1#2{\mathop{
+\raisebox{.2ex}{$
+{{\scriptstyle\;#1}\atop{\ds\gtrless}}
+\atop
+{\raisebox{-1.25ex}{$\scriptstyle\;#2$}}
+$}
+}}
+
+\DeclareMathOperator{\erf}{erf}
 
 % }}}
 
