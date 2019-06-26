@@ -8,6 +8,7 @@
 \RequirePackage{tikz}
 \RequirePackage{bm}
 \RequirePackage{dsfont}
+\RequirePackage[mathscr]{euscript}
 
 % memes {{{
 
@@ -91,6 +92,10 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\pen}{pen}
+
+\DeclareMathOperator{\FourierOp}{\mathscr{F}}
+\newcommand{\Fourier}[1]{\FourierOp\left[#1\right]}
 
 % fix spacing with \left and \right
 \let\originalleft\left
@@ -228,7 +233,7 @@
 \newcommand{\I}{\mathds{1}}
 \newcommand{\1}{\I}
 
-\DeclareMathOperator{\IID}{IID}
+\DeclareMathOperator{\IID}{i.i.d.}
 \DeclareMathOperator{\iid}{\IID}
 \DeclareMathOperator{\Ber}{Ber}
 \DeclareMathOperator{\Bin}{Bin}
