@@ -70,22 +70,19 @@
 
 % what, when, info, extra, extrainfo, description
 \newcommand{\block}[6]{%
-  \bgroup
-  \def\arraystretch{1.1}
   \begin{tabularx}{\width}{@{}Xr@{}}
     \mc{1}{l}{\bfseries #1} & #2 \\
     \mc{1}{l}{#3} & \textsl{#4} \\
     \def\nextitem{\def\nextitem{}}%
     \ifstrempty{#5}
-      {\\ [-2.2\normalbaselineskip]}
+      {\\ [-1.2\normalbaselineskip]}
       {\@for \el:={#5}\do{\nextitem{\el \newline}}}
-    \phantom{} \\[-0.8\normalbaselineskip]
+    \phantom{} \\[-0.6\normalbaselineskip]
     \ifstrempty{#6}
       {}
       {\mcX{2}{\descriptionsize\rmfamily\parbox{\hsize}{#6}}}
   \end{tabularx}
-  \egroup
-  \vspace{1ex plus 1ex minus 1ex}
+  \vspace{0ex plus 1ex minus 1ex}
 }
 
 \def\nameskip{\smallskip}
