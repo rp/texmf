@@ -4,7 +4,7 @@
 \LoadClass[11pt,letterpaper]{article}
 
 \RequirePackage{amsmath}
-\RequirePackage[font=footnotesize, skip=6pt]{caption}
+\RequirePackage[skip=6pt]{caption}
 \RequirePackage{enumitem}
 \RequirePackage{etoolbox}
 \RequirePackage{fancyhdr}
@@ -50,6 +50,8 @@
 \linespread{1.1}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
+
+\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
 
 \patchcmd{\@maketitle}{\@title}{
   \textbf{\sffamily\@title} \\ [9pt]
