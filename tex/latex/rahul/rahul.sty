@@ -8,7 +8,8 @@
 \RequirePackage{tikz}
 \RequirePackage{bm}
 \RequirePackage{dsfont}
-\RequirePackage[mathscr]{euscript}
+%\RequirePackage[mathscr]{euscript}
+\RequirePackage{mathrsfs}
 
 % memes {{{
 
@@ -66,8 +67,6 @@
 \renewcommand{\vec}[1]{{\bm{#1}}}
 \newcommand{\mat}[1]{\mathbf{#1}}
 
-\newcommand\st[1][]{\:\colon\:}
-
 \newcommand{\var}[1]{\mathit{#1}}
 \newcommand{\func}[1]{\mathit{#1}}
 
@@ -76,11 +75,12 @@
 \DeclareRobustCommand\bfseries{%
   \not@math@alphabet\bfseries\mathbf
   \fontseries\bfdefault\selectfont
-  %\boldmath % <-- added
+  \boldmath % <-- added
 }
 
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Area}{Area}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -92,10 +92,23 @@
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\sgn}{sgn}
-\DeclareMathOperator{\pen}{pen}
+\DeclareMathOperator{\pen}{penalty}
+\DeclareMathOperator{\ReLU}{ReLU}
+\DeclareMathOperator{\D}{D}
+\DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\Lagr}{Lagr}
+%\DeclareMathOperator{\ker}{ker}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\Ell}{L}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Graph}{Graph}
+\DeclareMathOperator{\sinc}{sinc}
+\newcommand{\imag}{\mathrm{j}}
+\DeclareMathOperator{\diag}{diag}
 
 \DeclareMathOperator{\FourierOp}{\mathscr{F}}
-\newcommand{\Fourier}[1]{\FourierOp\left[#1\right]}
+\newcommand{\Fourier}[2][]{\FourierOp_{#1}\left\{#2\right\}}
+\newcommand{\FourierInv}[2][]{\FourierOp^{-1}_{#1}\left\{#2\right\}}
 
 % fix spacing with \left and \right
 \let\originalleft\left
@@ -194,6 +207,9 @@
 % Probability & Related {{{
 
 \newcommand\given[1][]{\:\ifnum\currentgrouptype=16\middle\fi|\:}
+\newcommand\stcolon[1][]{\:\colon\:}
+\newcommand\stbar\given
+\def\st{\@ifstar\stbar\stcolon}
 
 \newcommand\indep{\protect\mathpalette{\protect\indephelper}{\perp}}
 \def\indephelper#1#2{\mathrel{\rlap{$#1#2$}\mkern4mu{#1#2}}}
@@ -225,7 +241,7 @@
 \DeclarePairedDelimiterX{\infdivx}[2]{(}{)}{%
   #1\;\delimsize\|\;#2%
 }
-\newcommand{\D}{D\infdivx}
+\newcommand{\divergence}{D\infdivx}
 
 \let\oldKL\KL
 \def\KL{\@ifstar{\oldKL}{\oldKL*}}

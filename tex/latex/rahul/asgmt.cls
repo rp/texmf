@@ -50,7 +50,7 @@
 \rhead{\firstxmark}
 \lfoot{\lastxmark}
 \cfoot{}
-\rfoot{Page {\thepage} of \pageref{LastPage}}
+\rfoot{Page {\thepage} of \pageref*{LastPage}}
 
 \fancypagestyle{plain}{
   \lhead{}
@@ -58,7 +58,7 @@
   \rhead{}
   \lfoot{\lastxmark}
   \cfoot{}
-  \rfoot{Page {\thepage} of \pageref{LastPage}}
+  \rfoot{Page {\thepage} of \pageref*{LastPage}}
   \renewcommand{\headrulewidth}{0pt}
 }
 
