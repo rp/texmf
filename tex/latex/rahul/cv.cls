@@ -18,8 +18,8 @@
 
 \setlength\parindent{0pt} % no indent by default
 \newcommand{\name}[1]{\centerline{\bfseries\huge{\MakeUppercase{#1}}}\nameskip}
-\newcommand{\setcolor}[1]{\def\@color{#1}}
-\def\@color{\color{black}}
+\newcommand{\setcolor}[1]{\def\@color{#1}\hypersetup{colorlinks,allcolors=\@color}}
+\def\@color{black}
 
 \newsavebox{\mybox}
 \newcommand*{\mlap}[1]{%
@@ -27,9 +27,9 @@
   \raisebox{0.5\ht\mybox}{\usebox{\mybox}}%
 }
 
-\def\labelitemi{\mlap{\tiny \@color{$\blacktriangleright$}}}
-
 \hypersetup{colorlinks,allcolors=blue}
+
+\def\labelitemi{\mlap{\tiny\color{\@color} {$\blacktriangleright$}}}
 
 \setlist{noitemsep}
 \setlist{nolistsep}
@@ -58,14 +58,14 @@
   {#1\textnormal{\dotfill}}
 
 \titleformat{\section}
-  {\@color\normalsize\bfseries\raggedright}
+  {\color{\@color}\normalsize\bfseries\raggedright}
   {}
   {0pt}
   {\uppercase}
   [\sectionskip\titlerule]
 
 \titleformat{\subsection}
-  {\@color\normalsize\raggedright}
+  {\color{\@color}\normalsize\raggedright}
   {}
   {0.5em}
   {\dotafter}
