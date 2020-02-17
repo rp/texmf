@@ -30,6 +30,9 @@
 \def\name#1{\def\@name{#1}}
 \def\@name{??}
 
+\newcommand{\setcolor}[1]{\def\@color{#1}}
+\def\@color{black}
+
 \DeclareOption{nodue}{
   \noduetrue
 }
@@ -105,13 +108,13 @@
   \fi
   \extramarks{\currentproblem}{}
 
-  \newtcolorbox{question}[1][\currentproblem]{
+  \newtcolorbox{questionbox}[1][\currentproblem]{
     skin=enhanced,
     attach boxed title to top center={yshift=-2.5mm},
     colback=white,
-    colframe=black,
+    colframe=\@color,
     colbacktitle=white,
-    coltitle=black,
+    coltitle=\@color,
     boxed title style={size=small,
       colframe=white,
     },
@@ -120,7 +123,12 @@
     breakable,
     title=##1,
   }
-  \problementer
+  \newenvironment{question}[1][\currentproblem]{
+    \begin{questionbox}[##1]
+  }{
+    \end{questionbox}
+    \problementer
+  }
 }{
   \problemexit
 }
@@ -137,9 +145,9 @@
 }
 
 \title{
-  \textbf{\sffamily\@class:\ \@assignment} \\ [12pt]
+  \textbf{\sffamily\color{\@color}\@class:\ \@assignment} \\ [12pt]
   \small \ifnodue \vspace{-3pt} \else Due\ on\ \@due \\ [9pt] \fi
-  \textbf{\sffamily\@name} \\ [3pt]
+  \textbf{\sffamily\color{\@color}\@name} \\ [3pt]
   \textbf{\sffamily\@ident} \\
 }
 \preauthor{}
