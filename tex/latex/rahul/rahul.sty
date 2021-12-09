@@ -72,18 +72,20 @@
 
 \newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
-\DeclareRobustCommand\bfseries{%
-  \not@math@alphabet\bfseries\mathbf
-  \fontseries\bfdefault\selectfont
-  \boldmath % <-- added
-}
+% \DeclareRobustCommand\bfseries{%
+%   \not@math@alphabet\bfseries\mathbf
+%   \fontseries\bfdefault\selectfont
+%   \boldmath % <-- added
+% }
 
 \DeclareMathOperator{\lcm}{lcm}
-\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\cof}{cof}
+\DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\Area}{Area}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\diam}{diam}
 % variation of a function, not variable nor variance
 \DeclareMathOperator{\V}{Var}
@@ -96,19 +98,39 @@
 \DeclareMathOperator{\ReLU}{ReLU}
 \DeclareMathOperator{\D}{D}
 \DeclareMathOperator{\TV}{TV}
+\DeclareMathOperator{\BV}{BV}
+\DeclareMathOperator{\M}{\mathcal{M}}
 \DeclareMathOperator{\Lagr}{Lagr}
 %\DeclareMathOperator{\ker}{ker}
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\Ell}{L}
-\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\proj}{proj}
 \DeclareMathOperator{\Graph}{Graph}
 \DeclareMathOperator{\sinc}{sinc}
-\newcommand{\imag}{\mathrm{j}}
+\newcommand{\imag}{{\mkern 2 mu}\mathrm{j}}
+%\newcommand{\imag}{\mathrm{i}}
 \DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Lip}{Lip}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\R}{\mathbb{R}}
+\newcommand{\dummy}{\mkern1mu\cdot\mkern1mu}
+\newcommand{\subj}{\mathrm{s.t.}}
+\newcommand{\Sch}{\mathscr{S}}
+
+
+\newcommand{\T}{{\textsf{T}}}
 
 \DeclareMathOperator{\FourierOp}{\mathscr{F}}
 \newcommand{\Fourier}[2][]{\FourierOp_{#1}\left\{#2\right\}}
-\newcommand{\FourierInv}[2][]{\FourierOp^{-1}_{#1}\left\{#2\right\}}
+\newcommand{\InvFourier}[2][]{\FourierOp^{-1}_{#1}\left\{#2\right\}}
+
+\DeclareMathOperator{\RadonOp}{\mathscr{R}}
+\newcommand{\Radon}[1]{\RadonOp\left\{#1\right\}}
+\newcommand{\DualRadon}[1]{\RadonOp^*\left\{#1\right\}}
+
+\DeclareMathOperator{\HilbertOp}{\mathscr{H}}
+\newcommand{\Hilbert}[1]{\HilbertOp\left\{#1\right\}}
 
 % fix spacing with \left and \right
 \let\originalleft\left
@@ -153,6 +175,8 @@
 \newcommand{\littleO}[1]{o\paren{#1}}
 \newcommand{\smallO}[1]{\littleO{#1}}
 
+\newcommand{\weakto}{\rightharpoonup}
+
 \def\mathcolor#1#{\@mathcolor{#1}}
 \def\@mathcolor#1#2#3{%
   \protect\leavevmode
@@ -172,8 +196,11 @@
 \let\oldtilde\tilde
 \renewcommand{\tilde}[1]{{\vphantom{#1}\smash[t]{\widetilde{#1}}}}
 
+% \let\oldint\int
+% \renewcommand{\int}{\oldint\limits}
+
 \newcommand\evalBracket[1]{{\left[#1\vphantom{\Big|}\right|}}
-\newcommand\evalNoBracket[1]{{\left.\kern-\nulldelimiterspace#1\vphantom{\Big|}\right|}}
+\newcommand\evalNoBracket[1]{{\left.\kern-\nulldelimiterspace#1\vphantom{\big|}\right|}}
 \def\eval{\@ifstar\evalBracket\evalNoBracket}
 
 \newsavebox\myboxA

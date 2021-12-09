@@ -92,7 +92,7 @@
     \ifstrempty{#5}
       {\\ [-1.2\normalbaselineskip]}
       {\@for \el:={#5}\do{\nextitem{\el \newline}}}
-    \phantom{} \\ [-0.5\normalbaselineskip]
+    \phantom{} \\ [-0.75\normalbaselineskip]
     \ifstrempty{#6}
       {}
       {\mcX{2}{\descriptionsize\rmfamily\parbox{\hsize}{#6}}}
@@ -112,7 +112,7 @@
       {}
       {\mcX{2}{\rmfamily\parbox{\hsize}{#5}} \\ [0.5\normalbaselineskip]}
   \end{tabularx}
-  \vspace{-1ex plus 1ex minus 1ex}
+  %\vspace{-1ex plus 1ex minus 1ex}
 }
 
 \def\block{\@ifstar\blockstar\blocknostar}
