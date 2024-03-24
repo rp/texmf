@@ -6,13 +6,15 @@
 \RequirePackage{amssymb}
 \RequirePackage{microtype}
 \RequirePackage{titlesec}
-\RequirePackage[headheight=110pt,margin=0.63in]{geometry}
+\RequirePackage[headheight=110pt,margin=0.5in]{geometry}
 \RequirePackage{hyperref}
 \RequirePackage{tabularx}
 \RequirePackage{multicol}
 \RequirePackage{etoolbox}
-\RequirePackage{enumitem}
+\RequirePackage[inline]{enumitem}
 \RequirePackage[cmyk]{xcolor}
+\RequirePackage{lastpage}
+\RequirePackage{fancyhdr}
 
 \renewcommand{\familydefault}{\sfdefault}
 
@@ -115,6 +117,19 @@
   %\vspace{-1ex plus 1ex minus 1ex}
 }
 
+\newcommand{\talk}[6]{%
+  \begin{tabularx}{\width}{@{}Xr@{}}
+    \mc{1}{l}{\bfseries #1} & #2 \\ [0.1\normalbaselineskip]
+    \ifstrempty{#3}
+      {\\ [-\normalbaselineskip]}
+      {\mc{1}{l}{\rmfamily #3} & #4 \\}
+    \ifstrempty{#5}
+      {\phantom{} \\ [-0.5\normalbaselineskip]}
+      {\phantom{} \\ [-1\normalbaselineskip] \mcX{2}{\rmfamily\parbox{\hsize}{#5}} \\ [0.5\normalbaselineskip]}
+  \end{tabularx}
+  %\vspace{-1ex plus 1ex minus 1ex}
+}
+
 \def\block{\@ifstar\blockstar\blocknostar}
 
 \def\nameskip{\smallskip}
@@ -125,3 +140,20 @@
 \def\width{\dimexpr\linewidth-\leftskip\relax}
 
 \def\descriptionsize{\small}
+
+\fancypagestyle{plain}{
+  \lhead{}
+  \chead{}
+  \rhead{}
+  \lfoot{\rmfamily\itshape Last Updated \today}
+  \cfoot{}
+  \rfoot{\rmfamily\itshape Page {\thepage} of \pageref*{LastPage}}
+}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\setlength{\footskip}{0pt}
+
+\pagestyle{plain}
+
+
